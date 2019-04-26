@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('dinamyc-services', require('./components/DinamycServices.vue').default);
+Vue.component('v-select', require('vue-select'));
 
 
 /**

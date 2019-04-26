@@ -1,16 +1,17 @@
 <template>
     <section class="services-in-doctor">
-        <div class="form-group append row">
-            <label class="card-title col-md-12">Добавление услуг</label>
-            <h5 class="card-title col-md-6 my-3">Название услуги</h5>
-            <h5 class="card-title col-md-3 my-3">Время выполнения (мин.)</h5>
-            <h5 class="card-title col-md-3 my-3">Возрастной диапазон (лет)</h5>
+        <div class="services-in-doctor__row">
+            <label class="services-in-doctor__row_title">Добавление услуг</label>
+            <div class="services-in-doctor__row_header">
+                <h5 class="services-in-doctor__row_sub-title services-in-doctor__h1">Название услуги</h5>
+                <h5 class="services-in-doctor__row_sub-title services-in-doctor__h2">Время выполнения (мин.)</h5>
+                <h5 class="services-in-doctor__row_sub-title services-in-doctor__h3">Возрастной диапазон (лет)</h5>
+            </div>
 
-            <div class="row copy-block col-12" v-for="(item, index) in items">
-                <div class="form-group col-md-5">
-                    <select name="service[]" id="service" class="form-control">
-                        <option :value="service.id" v-for="service in services">{{ service.title }}</option>
-                    </select>
+            <div class="services-in-doctor__row_service-row" v-for="(item, index) in items">
+
+                <div class="services-in-doctor__services-control">
+                    <v-select :options="options" class="services-in-doctor__control" style="border-color: transparent;" />
                 </div>
 
                 <template v-for="(input, i) in item.inputs">
@@ -23,8 +24,8 @@
                     </div>
                 </template>
 
-                <div class="form-group col-md-1">
-                    <button type="button" class="btn btn-warning btn-circle btn-close" style="display: block;margin: 0 auto;"><i class="fa fa-times"></i></button>
+                <div class="services-in-doctor__btn-close">
+                    <button type="button" @click="destroyService" class="btn btn-warning btn-circle btn-close" style="display: block;margin: 0 auto;"><i class="fa fa-times"></i></button>
                 </div>
 
             </div>
@@ -38,28 +39,33 @@
 </template>
 
 <script>
+import vSelect from 'vue-select'
+
 export default {
+    components: {
+      vSelect
+    },
     data() {
       return {
         myProto:  {
             inputs: [
-                { name: 'time', placeholder: 'Время выполнения', type: 'number', classWrapper: 'form-group col-md-3', class: 'form-control' },
-                { name: 'old_min', placeholder: 'От', type: 'number', classWrapper: 'form-group col-md-1', class: 'form-control' },
-                { name: 'old_max', placeholder: 'До', type: 'number', classWrapper: 'form-group col-md-1', class: 'form-control' },
-                { name: 'sort', type: 'checkbox', label: 'Top', classWrapper: 'form-group col-md-1', class: 'chk-col-red' },
+              { name: 'time', placeholder: 'Время выполнения', type: 'number', classWrapper: 'services-in-doctor__time-control', class: 'services-in-doctor__control' },
+              { name: 'old_min', placeholder: 'От', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'old_max', placeholder: 'До', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'sort', type: 'checkbox', label: 'Top', classWrapper: 'services-in-doctor__top-control ', class: 'chk-col-red services-in-doctor__control' },
             ]
         },
-        items: [
-            {
-                inputs: [
-                    { name: 'time', placeholder: 'Время выполнения', type: 'number', classWrapper: 'form-group col-md-3', class: 'form-control' },
-                    { name: 'old_min', placeholder: 'От', type: 'number', classWrapper: 'form-group col-md-1', class: 'form-control' },
-                    { name: 'old_max', placeholder: 'До', type: 'number', classWrapper: 'form-group col-md-1', class: 'form-control' },
-                    { name: 'sort', type: 'checkbox', label: 'Top', classWrapper: 'form-group col-md-1', class: 'chk-col-red' },
-                ]
-            }
-        ],
         counter: 0,
+        items: [
+          {
+            inputs: [
+              { name: 'time', placeholder: 'Время выполнения', type: 'number', classWrapper: 'services-in-doctor__time-control', class: 'services-in-doctor__control' },
+              { name: 'old_min', placeholder: 'От', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'old_max', placeholder: 'До', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'sort', type: 'checkbox', label: 'Top', classWrapper: 'services-in-doctor__top-control ', class: 'chk-col-red services-in-doctor__control' },
+            ]
+          }
+        ]
       }
     },
     props: {
@@ -68,14 +74,21 @@ export default {
             default: () => [
                 { id: 1, title: 'Услуга 1' },
                 { id: 2, title: 'Услуга 2' },
-                { id: 3, title: 'Услуга 3' },
-                { id: 4, title: 'Услуга 4' },
-                { id: 5, title: 'Услуга 5' },
-                { id: 6, title: 'Услуга 6' },
-                { id: 7, title: 'Услуга 7' },
-                { id: 8, title: 'Услуга 8' }
+                { id: 3, title: 'Услуга 3' }
             ]
+        },
+     /* items: {
+        default: () => {
+          return {
+            inputs: [
+              { name: 'time', placeholder: 'Время выполнения', type: 'number', classWrapper: 'services-in-doctor__time-control', class: 'services-in-doctor__control' },
+              { name: 'old_min', placeholder: 'От', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'old_max', placeholder: 'До', type: 'number', classWrapper: 'services-in-doctor__old-control', class: 'services-in-doctor__control' },
+              { name: 'sort', type: 'checkbox', label: 'Top', classWrapper: 'services-in-doctor__top-control ', class: 'chk-col-red services-in-doctor__control' },
+            ]
+          }
         }
+      }*/
     },
     methods: {
         arrName(name) {
@@ -84,6 +97,12 @@ export default {
         addService() {
             this.counter++
             this.items.push(this.myProto)
+        },
+        destroyService(id) {
+          if (this.items.length === 1) {
+            return console.log('Delete fails')
+          }
+          // this.events.splice(this.events.indexOf(event), 1);
         }
     },
     computed: {
@@ -94,12 +113,88 @@ export default {
                 result.push({ id: index, title: arr[index] })
             }
             return result
+        },
+        options() {
+            let arr = JSON.parse(this.servicesArr);
+            let result = [];
+            for(let index in arr) {
+              result.push({ value: index, label: arr[index] })
+            }
+            return result
         }
-    },
-
+    }
 }
 </script>
 
 <style>
+@import "~vue-select/dist/vue-select.css";
 
+.services-in-doctor__row_title {
+    color: #1e88e5;
+}
+.services-in-doctor {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.services-in-doctor__row {
+    display: flex;
+    flex-direction: column;
+}
+.services-in-doctor__row_header {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 82%;
+}
+.services-in-doctor__row_service-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+.services-in-doctor__services-control {
+    flex: 1 1 30%;
+    margin: 0 12px 20px;
+}
+.services-in-doctor__time-control {
+    flex: 1 1 20%;
+    margin: 0 12px 20px;
+
+}
+.services-in-doctor__old-control {
+    flex: 1 1 10%;
+    margin: 0 12px 20px;
+}
+.services-in-doctor__top-control {
+    flex: 1 1 5%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 12px 20px;
+}
+.services-in-doctor__control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #1e88e5;
+    border-radius: 4px;
+    min-width: 50px;
+}
+.services-in-doctor__btn-close {
+    flex: 1 1 10%;
+}
+.services-in-doctor__row_sub-title {
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+.services-in-doctor__h1 {
+    flex: 0 0 38%;
+    text-align: center;
+}
+.services-in-doctor__h2 {
+    flex: 0 0 27%;
+    text-align: center;
+}
+.services-in-doctor__h3 {
+    flex: 0 0 30%;
+    text-align: center;
+}
 </style>

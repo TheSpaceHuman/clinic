@@ -1,11 +1,13 @@
 
+/*
 $(document).ready(function() {
   $('.textarea_editor').wysihtml5();
 });
+*/
 
 try {
   $(document).ready(function() {
-    $('#summernote').summernote();
+    $('.textarea_editor').summernote();
   });
 
 } catch (e) {

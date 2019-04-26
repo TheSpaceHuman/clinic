@@ -8063,3 +8063,10 @@ table a[data-toggle=tooltip], table button[data-toggle=tooltip] {
 .table thead th, .table th {
   font-weight: 700;
 }
+.note-editable {
+  min-height: 200px;
+}
+form label {
+  font-weight: 800;
+  font-size: 21px;
+}
