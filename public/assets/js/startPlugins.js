@@ -1,6 +1,24 @@
+
+$(document).ready(function() {
+  $('.textarea_editor').wysihtml5();
+});
+
+try {
+  $(document).ready(function() {
+    $('#summernote').summernote();
+  });
+
+} catch (e) {
+  console.log(e)
+}
+
 $(".select2").select2();
+
 $(function () {
   $('#myTable').DataTable();
+
+
+
   $(function () {
     var table = $('#example').DataTable({
       "columnDefs": [{
@@ -36,5 +54,16 @@ $(function () {
         table.order([2, 'asc']).draw();
       }
     });
+  });
+});
+
+//Destroy button
+var myDestroyBtns = document.querySelectorAll('#destroy-btn')
+
+myDestroyBtns.forEach(function(element) {
+  element.addEventListener('submit', function (event) {
+    if (!confirm("Вы точно хотите удалить этот элемент?")) {
+      event.preventDefault();
+    }
   });
 });

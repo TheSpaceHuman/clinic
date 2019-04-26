@@ -22,7 +22,8 @@ Author: Themedesigner
 Email: niravjoshi87@gmail.com
 File: scss
 */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+/*@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");*/
 /*Theme Colors*/
 /*bootstrap Color*/
 /*Light colors*/
@@ -8048,4 +8049,17 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
   width: 70px;
   height: 70px;
   border-radius: 100%;
+  object-fit: cover;
+}
+.wysihtml5-sandbox {
+  border: 1px solid rgba(103, 117, 124, .5)!important;
+  padding: 12px!important;
+}
+table a[data-toggle=tooltip], table button[data-toggle=tooltip] {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+.table thead th, .table th {
+  font-weight: 700;
 }

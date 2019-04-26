@@ -12723,7 +12723,7 @@ a:hover {
 .doctor-card-items {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   margin-bottom: 50px;
   margin-top: 40px;
