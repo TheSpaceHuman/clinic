@@ -20,7 +20,10 @@ class ServiceController extends Controller
 
     $categories = Category::all();
 
-    $services = Service::pluck('title', 'id')->all();
+//    $services = Service::pluck('title', 'id')->all();
+    $services = Service::all();
+
+
 
     $doctors = Doctor::orderBy('id', 'desc')->paginate(10);
 

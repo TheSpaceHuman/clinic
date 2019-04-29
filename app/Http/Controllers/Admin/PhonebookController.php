@@ -37,7 +37,7 @@ class PhonebookController extends Controller
      */
     public function create()
     {
-      $categories = ['Экстренные телефоны', 'Сотрудники клиники 1', 'Сотрудники клиники 2', 'Внутренние номер всех клиник', 'Партнеры клиники'];
+      $categories = ['Экстренные телефоны', 'Сотрудники клиники 1', 'Сотрудники клиники 2', 'Внутренние номера', 'Партнеры клиники'];
 
       return view('admin.phonebook.create' , compact('categories'));
 
@@ -80,7 +80,7 @@ class PhonebookController extends Controller
      */
     public function edit($id)
     {
-      $categories = ['Экстренные телефоны', 'Сотрудники клиники 1', 'Сотрудники клиники 2', 'Внутренние номер всех клиник', 'Партнеры клиники'];
+      $categories = ['Экстренные телефоны', 'Сотрудники клиники 1', 'Сотрудники клиники 2', 'Внутренние номера', 'Партнеры клиники'];
 
       $phone = Phonebook::findOrFail($id);
       return view('admin.phonebook.edit', ['phone'=>$phone , 'categories' => $categories]);

@@ -25,8 +25,8 @@
             <div class="form-group col-4">
                 <select class="service-select2 w-100" name="s" value="{{ isset($s) ? $s : '' }}">
                     <option></option>
-                    @foreach($services as $service_id => $service)
-                        <option value="{{ $service_id }}">{{ $service }}</option>
+                    @foreach($services as $service)
+                        <option value="{{ $service->id }}">{{ $service->title }} {{ $service->words ? '[' . $service->words . ']' : '' }}</option>
                     @endforeach
                 </select>
             </div>
