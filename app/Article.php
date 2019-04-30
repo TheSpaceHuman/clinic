@@ -13,7 +13,7 @@ class Article extends Model
 
   public function getIntrotext($text)
   {
-    $string = str_limit($text, 350);
+    $string = str_limit($text, 550);
 
     return $string;
   }

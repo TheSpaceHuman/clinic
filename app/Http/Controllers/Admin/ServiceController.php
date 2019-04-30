@@ -125,10 +125,7 @@ class ServiceController extends Controller
       $dostors = Doctor::pluck('name', 'id')->all();
       $selectedDoctor = $service->doctor->pluck('id')->all();
       $categories = Category::pluck('title', 'id')->all();
-      $selectedCategory = null;
-      if ($service->category) {
-        $selectedCategory = $service->category->where('id', $service->category_id)->pluck('title', 'id');
-      }
+
 
 
 
@@ -137,7 +134,6 @@ class ServiceController extends Controller
           'service'=> $service,
           'doctors' => $dostors,
           'selectedDoctor' => $selectedDoctor,
-          'selectedCategory' => $selectedCategory,
           'categories' => $categories
       ]);
     }

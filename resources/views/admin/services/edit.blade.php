@@ -22,11 +22,12 @@
 
                         <div class="form-group">
                             <label for="category_id">Категория</label>
-                            {{Form::select('category_id',
-                            $categories,
-                            $selectedCategory,
-                            ['class' => 'form-control','data-placeholder'=>'Выберите категорию'])
-                            }}
+                            <select name="category_id" class="form-control" data-placeholder="Выберите категорию">
+                                <option value="" disabled>Выберите категорию</option>
+                                @foreach($categories as $category_id => $category_title)
+                                    <option value="{{ $category_id }}" {{ $service->category->id === $category_id ? 'selected' : '' }}>{{ $category_title }}</option>
+                                @endforeach
+                            </select>
 
                         </div>
 

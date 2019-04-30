@@ -51,7 +51,7 @@ class ArticleController extends Controller
       $validated = $this->validate($request, [
           'title'	=>	'required|max:255',
           'content' => 'required',
-          'introtext' => 'required|max:1000',
+          'introtext' => 'required|max:3000',
           'article_category_id' => 'required'
       ]);
 
@@ -102,7 +102,7 @@ class ArticleController extends Controller
       $validated = $this->validate($request, [
           'title'	=>	'required|max:255',
           'content' => 'required',
-          'introtext' => 'required|max:1000',
+          'introtext' => 'required|max:3000',
           'article_category_id' => 'required'
       ]);
 

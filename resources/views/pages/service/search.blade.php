@@ -47,7 +47,7 @@
 
         @isset($s)
             <div class="recommend-article">
-                <h4 class="recommend__title">Рекомендовынные статьи</h4>
+                <h4 class="recommend__title">Рекомендовыные статьи</h4>
                 <ol class="recommend-article__list">
                     @forelse($articles as $article)
                         <li class="article__item">
