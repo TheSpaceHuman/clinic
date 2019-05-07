@@ -60,7 +60,7 @@ class Service extends Model
   {
     if (!$this->doctor->isEmpty()) {
       $template = '
-      <a class="btn btn-info" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
+      <a class="btn btn-info d-block mb-2" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
           Посмотреть всех докторов
       </a>
       <div class="collapse" id="' . $this->slug . '">

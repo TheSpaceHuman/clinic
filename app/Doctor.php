@@ -98,8 +98,8 @@ class Doctor extends Model
   {
     if (!$this->service->isEmpty()) {
       $template = '
-      <a class="btn btn-info" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
-          Посмотреть всех докторов
+      <a class="btn btn-info d-block mb-2" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
+          Посмотреть все услуги
       </a>
       <div class="collapse" id="' . $this->slug . '">
           <div class="card card-body">' .
@@ -107,7 +107,7 @@ class Doctor extends Model
           </div>
       </div>';
     } else {
-      $template = 'Нет сервисов';
+      $template = 'Нет услуг';
     }
     echo $template;
   }
