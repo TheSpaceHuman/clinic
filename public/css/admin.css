@@ -8078,6 +8078,27 @@ form label {
   font-weight: 800;
   font-size: 21px;
 }
+.form-group_header-items {
+  display: flex;
+  width: 84%;
+  padding: 0 20px;
+  text-align: center;
+}
+.form-group_header-items .header-service-name {
+  flex: 1 1 615px;
+}
+.form-group_header-items .header-lead-time {
+  flex: 1 1 290px;
+}
+.form-group_header-items .header-old-in {
+  flex: 1 1 125px;
+}
+.form-group_header-items .header-old-to {
+  flex: 1 1 125px;
+}
+.form-group_header-items .header-priority-dictor {
+  flex: 1 1 120px;
+}
 
 /*
 Template Name: Material Pro Admin

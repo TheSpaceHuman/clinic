@@ -20,17 +20,17 @@
           clone.find('.f1').attr({
             name: CLASS_OLD_MIN,
             placeholder: 'От'
-          }).val('');
+          }).val('0');
 
           clone.find('.f2').attr({
             name: CLASS_OLD_MAX,
             placeholder: 'До'
-          }).val('');
+          }).val('99');
 
           clone.find('.f3').attr({
             name: CLASS_TIME,
             placeholder: 'Время'
-          }).val('');
+          }).val('0');
 
           clone.find('.f4').attr({
             name: CLASS_TITLE,
@@ -110,9 +110,15 @@
 
                         <div class="form-group append row">
                             <label class="card-title col-md-12">Добавление услуг</label>
-                            <h5 class="card-title col-md-6 my-3">Название услуги</h5>
-                            <h5 class="card-title col-md-3 my-3">Время выполнения (мин.)</h5>
-                            <h5 class="card-title col-md-3 my-3">Возрастной диапазон (лет)</h5>
+
+                            <div class="form-group_header-items">
+                                <h5 class="card-title header-service-name my-3">Название услуги</h5>
+                                <h5 class="card-title header-lead-time my-3">Время выполнения (мин.)</h5>
+                                <h5 class="card-title header-old-in my-3">Возраст ОТ</h5>
+                                <h5 class="card-title header-old-to my-3">Возраст ДО</h5>
+                                <h5 class="card-title header-priority-dictor my-3">Приоритет</h5>
+                            </div>
+
                             <div class="row copy-block col-12">
                                 <div class="form-group col-md-5">
                                     {{Form::select('service[0][service_id]',
