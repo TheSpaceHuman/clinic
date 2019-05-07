@@ -55,7 +55,7 @@
                                     <td class="d-none">{{$service->price}}</td>
                                     <td class="text-center">{{$service->checkStatus()}}</td>
                                     <td style="white-space: nowrap;">
-                                        {{$service->getDoctorTitle()}}
+                                        {{$service->getDoctorsTitle()}}
                                     </td>
                                     <td>{{$service->getCategoryTitle()}}</td>
                                     <td>

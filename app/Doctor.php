@@ -94,7 +94,7 @@ class Doctor extends Model
          ?   $this->description : 'Примечание отсутствует';
   }
 
-  public function getServiceTitle()
+  public function getServicesTitle()
   {
     if (!$this->service->isEmpty()) {
       $template = '
@@ -286,7 +286,9 @@ class Doctor extends Model
         ->where('service_id', $serviceId)
         ->get()->toArray();
 
-    return $sort[0]->sort;
+    $length = count($sort);
+
+    return $sort[$length - 1]->sort;
 
   }
 

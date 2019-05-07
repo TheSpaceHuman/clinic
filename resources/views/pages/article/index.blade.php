@@ -48,7 +48,7 @@
                         {{ $article->getServices() }}
                     </div>
                     <div class="d-flex justify-content-end">
-                        <a href="articles/show/{{ $article->slug }}">Подробнее</a>
+                        <a href="articles/show/{{ $article->slug }}" class="btn btn-primary">Подробнее</a>
                     </div>
                 </div>
             @endforeach

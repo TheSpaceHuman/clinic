@@ -76,20 +76,31 @@ class Article extends Model
   }
   public function getServices()
   {
-//    $strS = '<p>' . $this->services->pluck('title')->all() . '</p>';
-    $strF = '<p>' . 'Услуга не назначена' . '</p>';
+//    $strF = '<p>' . 'Услуга не назначена' . '</p>';
+//
+//    if (!$this->services->isEmpty()) {
+//      foreach($this->services->pluck('title')->all() as $service)
+//      {
+//        echo  '<p>'. $elem . '</p>';
+//      }
+//    } else {
+//      echo  $strF;
+//    }
 
-//    echo (!$this->services->isEmpty())
-//        ?   implode('<br>', $strS)
-//        : $strF;
     if (!$this->services->isEmpty()) {
-      foreach($this->services->pluck('title')->all() as $elem)
-      {
-        echo  '<p>'. $elem . '</p>';
-      }
+      $template = '
+      <a class="btn btn-outline-primary btn-sm mb-2 ml-2 " data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
+          Посмотреть все услуги
+      </a>
+      <div class="collapse" id="' . $this->slug . '">
+          <div class="card card-body">' .
+          implode("<br>", $this->services->pluck("title")->all()) . '
+          </div>
+      </div>';
     } else {
-      echo  $strF;
+      $template = 'Нет услуг';
     }
+    echo $template;
 
   }
 

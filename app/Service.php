@@ -56,7 +56,7 @@ class Service extends Model
     return $this->belongsTo(Category::class);
   }
 
-  public function getDoctorTitle()
+  public function getDoctorsTitle()
   {
     if (!$this->doctor->isEmpty()) {
       $template = '

@@ -80,10 +80,10 @@ class ServiceController extends Controller
         ->paginate(10);
 
     $currentService = Service::find($s)->get();
-    $testDoctor = Doctor::find('41')->get();
 
 
-    return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles', 'currentService', 'testDoctor'));
+
+    return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles', 'currentService'));
   }
 
   public function showCategory($slug)

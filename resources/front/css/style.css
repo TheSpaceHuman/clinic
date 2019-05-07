@@ -3788,6 +3788,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 .back-to-index:hover {
   background-color: #ff6974;

@@ -53,7 +53,7 @@
                                         <td>{{$doctor->name}}</td>
                                         <td>{{$doctor->getCategoryTitle()}}</td>
                                         <td>
-                                            {{$doctor->getServiceTitle()}}
+                                            {{$doctor->getServicesTitle()}}
                                         </td>
                                         <td>{{$doctor->getBranchTitle()}}</td>
                                         <td>{{$doctor->getSpecTitle()}}</td>
