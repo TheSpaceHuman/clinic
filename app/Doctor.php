@@ -278,8 +278,10 @@ class Doctor extends Model
 
   }
 
-  public function getServiceSort($serviceId)
+  public function getServiceSort($serviceId = null)
   {
+
+    if ($serviceId === null) { return; }
 
     $sort = DB::table('doctor_service')
         ->where('doctor_id', $this->id)

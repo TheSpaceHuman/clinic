@@ -20,10 +20,7 @@ class ServiceController extends Controller
 
     $categories = Category::all();
 
-//    $services = Service::pluck('title', 'id')->all();
     $services = Service::all();
-
-
 
     $doctors = Doctor::orderBy('id', 'desc')->paginate(10);
 
@@ -32,7 +29,7 @@ class ServiceController extends Controller
 
   public function searchService(Request $request)
   {
-    $s = $request->input('s'); //service
+    $s = $request->input('s');
     $age = $request->input('age');
     $branch = $request->input('branch');
 
@@ -79,11 +76,10 @@ class ServiceController extends Controller
         }])
         ->paginate(10);
 
-    $currentService = Service::find($s)->get();
 
 
 
-    return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles', 'currentService'));
+    return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles'));
   }
 
   public function showCategory($slug)
