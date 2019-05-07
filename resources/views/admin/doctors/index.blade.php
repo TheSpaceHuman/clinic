@@ -52,7 +52,9 @@
                                         <td><img src="{{$doctor->getImage()}}" class="circle-img" alt="{{$doctor->name}}"></td>
                                         <td>{{$doctor->name}}</td>
                                         <td>{{$doctor->getCategoryTitle()}}</td>
-                                        <td>{{$doctor->getServiceTitle()}}</td>
+                                        <td>
+                                            {{$doctor->getServiceTitle()}}
+                                        </td>
                                         <td>{{$doctor->getBranchTitle()}}</td>
                                         <td>{{$doctor->getSpecTitle()}}</td>
                                         <td>

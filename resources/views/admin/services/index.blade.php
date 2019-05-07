@@ -38,13 +38,10 @@
                                 <th>ID</th>
                                 <th>Название</th>
                                 <th>Код</th>
-                                {{--<th>Время выполнения</th>--}}
-                                <th>Стоимость</th>
+                                <th class="d-none">Стоимость</th>
                                 <th>Наличие</th>
                                 <th>Назначеные доктора</th>
                                 <th>Категория</th>
-                                {{--<th>Возраст</th>--}}
-                                <td class="d-none">Old Range</td>
                                 <th>Действия</th>
                             </tr>
                             </thead>
@@ -55,13 +52,12 @@
                                     <td>{{$service->id}}</td>
                                     <td>{{$service->title}}</td>
                                     <td>{{$service->code}}</td>
-                                    {{--<td>{{$service->time}}</td>--}}
-                                    <td>{{$service->price}}</td>
+                                    <td class="d-none">{{$service->price}}</td>
                                     <td class="text-center">{{$service->checkStatus()}}</td>
-                                    <td style="white-space: nowrap;">{{$service->getDoctorTitle()}}</td>
+                                    <td style="white-space: nowrap;">
+                                        {{$service->getDoctorTitle()}}
+                                    </td>
                                     <td>{{$service->getCategoryTitle()}}</td>
-                                    {{--<td>{{$service->min_old. '-' .$service->max_old}}</td>--}}
-                                    <td class="d-none">{{ $service->getOldRange($service->min_old, $service->max_old) }}</td>
                                     <td>
                                         <a href="{{route('service.edit', ['id' => $service->id])}}" data-toggle="tooltip" data-original-title="Изменить"> <i class="fas fa-pencil-alt text-inverse m-r-10"></i> </a>
 

@@ -95,9 +95,20 @@ class Doctor extends Model
 
   public function getServiceTitle()
   {
-  echo (!$this->service->isEmpty())
-      ?   implode('<br>', $this->service->pluck('title')->all())
-      : 'Нет сервисов';
+    if (!$this->service->isEmpty()) {
+      $template = '
+      <a class="btn btn-info" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
+          Посмотреть всех докторов
+      </a>
+      <div class="collapse" id="' . $this->slug . '">
+          <div class="card card-body">' .
+          implode("<br>", $this->service->pluck("title")->all()) . '
+          </div>
+      </div>';
+    } else {
+      $template = 'Нет сервисов';
+    }
+    echo $template;
   }
 
   public function getServiceCode()

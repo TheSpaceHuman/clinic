@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <th scope="col">Наименование услуги</th>
-                <th scope="col">Цена</th>
+                <th scope="col" class="d-none">Цена</th>
                 <th scope="col">3б,48 Рослаб</th>
                 <th scope="col">Статус Пн-сб/вск</th>
                 <th scope="col">Мытищи Пн-сб/вск</th>
@@ -34,7 +34,7 @@
 
                 <tr style="text-align: left; position: relative; {{ $analyze->show === '0' ? 'background-color: #ff6974;' : ''}}">
                     <td>{{ $analyze->title }}</td>
-                    <td>{{ $analyze->price }}</td>
+                    <td class="d-none">{{ $analyze->price }}</td>
                     <td style="white-space: nowrap">{{ $analyze->branch_1 }}</td>
                     <td style="white-space: nowrap">{{ $analyze->branch_2 }}</td>
                     <td style="white-space: nowrap">{{ $analyze->branch_3 }}</td>

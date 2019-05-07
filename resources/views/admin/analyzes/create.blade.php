@@ -15,7 +15,7 @@
 
                         <div class="form-group">
                             <label for="price">Цена</label>
-                            <input type="text" class="form-control form-control-line" value="{{old('price')}}" id="price" name="price">
+                            <input type="number" class="form-control form-control-line" value="{{old('price', '0')}}" id="price" name="price">
                         </div>
 
                         <div class="form-group">

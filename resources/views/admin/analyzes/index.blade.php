@@ -38,7 +38,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Название</th>
-                                <th>Цена</th>
+                                <th class="d-none">Цена</th>
                                 <th>3б,48 Рослаб</th>
                                 <th>Статус Пн-сб/вск</th>
                                 <th>Мытищи Пн-сб/вск</th>
@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$analyze->id}}</td>
                                     <td>{{ $analyze->title }}</td>
-                                    <td>{{ $analyze->price }}</td>
+                                    <td class="d-none">{{ $analyze->price }}</td>
                                     <td style="white-space: nowrap">{{ $analyze->branch_1 }}</td>
                                     <td style="white-space: nowrap">{{ $analyze->branch_2 }}</td>
                                     <td style="white-space: nowrap">{{ $analyze->branch_3 }}</td>

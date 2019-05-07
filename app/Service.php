@@ -58,9 +58,20 @@ class Service extends Model
 
   public function getDoctorTitle()
   {
-    echo (!$this->doctor->isEmpty())
-        ?   implode('<br>', $this->doctor->pluck('name')->all())
-        : 'Нет докторов';
+    if (!$this->doctor->isEmpty()) {
+      $template = '
+      <a class="btn btn-info" data-toggle="collapse" href="#' . $this->slug . '" role="button" aria-expanded="false" aria-controls="' . $this->slug . '">
+          Посмотреть всех докторов
+      </a>
+      <div class="collapse" id="' . $this->slug . '">
+          <div class="card card-body">' .
+              implode("<br>", $this->doctor->pluck("name")->all()) . '
+          </div>
+      </div>';
+    } else {
+      $template = 'Нет докторов';
+    }
+    echo $template;
 
   }
   public function isStatus() {
