@@ -12828,3 +12828,6 @@ a:hover {
 .back-to-index .fas {
   color: #fff;
 }
+tr a {
+  color: inherit;
+}

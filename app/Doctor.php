@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Doctor extends Model
 {
@@ -274,6 +275,18 @@ class Doctor extends Model
     return $this->belongsToMany('App\Service')
         ->wherePivot('old_min', '>=', $age)
         ->wherePivot('old_max', '<=', $age);
+
+  }
+
+  public function getServiceSort($serviceId)
+  {
+
+    $sort = DB::table('doctor_service')
+        ->where('doctor_id', $this->id)
+        ->where('service_id', $serviceId)
+        ->get()->toArray();
+
+    return $sort[0]->sort;
 
   }
 

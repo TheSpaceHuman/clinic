@@ -73,15 +73,16 @@
             </thead>
             <tbody>
             @foreach ($doctors as $doctor)
-                <tr style="text-align: left;">
+                <tr style="text-align: left;{{ $doctor->getServiceSort($s) === '1' ? 'background-color: #ff6974;' : '' }}">
                     <td>
                         <div class="doc_item_img">
                             <a href="doctors/doctor/{{$doctor->slug}}"><img src="{{ $doctor->getImage() }}"></a>
+                            <p class="text-white text-center">{{ $doctor->getServiceSort($s) === '1' ? 'Приоритетный врач' : '' }}</p>
                         </div>
                     </td>
-                    <td><a href="doctors/doctor/{{$doctor->slug}}">{{ $doctor->name }}</a></td>
-                    <td>{{ $doctor->getBranchTitle() }}</td>
-                    <td>{{ $doctor->getSpecTitle() }}</td>
+                    <td class="{{ $doctor->getServiceSort($s) === '1' ? 'text-white' : '' }}"><a href="doctors/doctor/{{$doctor->slug}}">{{ $doctor->name }}</a></td>
+                    <td class="{{ $doctor->getServiceSort($s) === '1' ? 'text-white' : '' }}">{{ $doctor->getBranchTitle() }}</td>
+                    <td class="{{ $doctor->getServiceSort($s) === '1' ? 'text-white' : '' }}">{{ $doctor->getSpecTitle() }}</td>
                 </tr>
             @endforeach
 
