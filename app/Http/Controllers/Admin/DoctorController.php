@@ -35,7 +35,7 @@ class DoctorController extends Controller
     public function create()
     {
       $categories = Category::pluck('title', 'id')->all();
-      $services = Service::pluck('title', 'id')->all();
+      $services = Service::orderBy('title', 'asc')->pluck('title', 'id')->all();
       $branches = Branch::pluck('title', 'id')->all();
       $specs = Spec::pluck('title', 'id')->all();
 
@@ -117,7 +117,7 @@ class DoctorController extends Controller
 
       $doctor = Doctor::findOrFail($id);
       $categories = Category::pluck('title', 'id')->all();
-      $services = Service::pluck('title', 'id')->all();
+      $services = Service::orderBy('title', 'asc')->pluck('title', 'id')->all();
       $branches = Branch::pluck('title', 'id')->all();
       $specs = Spec::pluck('title', 'id')->all();
       $selectedCategory = $doctor->category->pluck('id')->all();

@@ -37,7 +37,9 @@ Route::group(['middleware' => 'auth'], function(){
   })->name('middleware.tasks');
   Route::get('user/profile', 'UserController@profile')->name('user.profile');
   Route::put('user/profile/{id}', 'UserController@update')->name('user.profile.update');
-  Route::get('test', 'TestController@index')->name('test');
+  //  Testing routes
+  Route::get('testing/add-services', 'TestController@addServices')->name('test.add-services');
+  Route::get('testing/services-search', 'TestController@servicesSearch')->name('test.services-search');
 });
 
 

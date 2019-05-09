@@ -3800,3 +3800,35 @@ a:hover {
 tr a {
   color: inherit;
 }
+.article-content_content::after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.detail-doctor {}
+.detail-doctor-wrapper {
+  padding: 20px;
+}
+.detail-doctor-description-wrapper {
+  padding: 20px;
+}
+.detail-doctor-img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+.detail-doctor-name {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 0 10px;
+}
+tr > th {
+  font-weight: 700;
+}
+.table-custom th {
+  font-weight: 700;
+}

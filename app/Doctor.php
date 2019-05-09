@@ -294,6 +294,11 @@ class Doctor extends Model
 
   }
 
+  public function searchDoctorsDoService()
+  {
+    
+  }
+
   public function sluggable()
   {
     return [

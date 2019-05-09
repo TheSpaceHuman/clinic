@@ -68,16 +68,7 @@ class ServiceController extends Controller
             $q->where('old_max', '>=', $age);
           }
         })
-        ->with(['service' => function ($q)
-        use ($s)
-        {
-//          $service = Service::find($s);
-          $q->orderBy('sort', 'desc');
-        }])
         ->paginate(10);
-
-
-
 
     return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles'));
   }

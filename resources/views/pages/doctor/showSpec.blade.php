@@ -40,8 +40,6 @@
                 <th scope="col">Филиалы</th>
                 <th scope="col">Специализация</th>
                 <th scope="col">Выездной?</th>
-                <th scope="col" class="d-none">Услуги</th>
-                <th scope="col" class="d-none">Возраст</th>
             </tr>
             </thead>
             <tbody>
@@ -56,13 +54,6 @@
                     <td>{{ $doctor->getBranchTitle() }}</td>
                     <td>{{ $doctor->getSpecTitle() }}</td>
                     <td>{{ $doctor->getExit() }}</td>
-
-                    <td class="d-none">
-                        {{ $doctor->getServiceTitle() }}
-                    </td>
-                    <td class="d-none">
-                        {{ $doctor->getServiceOldRange() }}
-                    </td>
                 </tr>
             @endforeach
             </tbody>
