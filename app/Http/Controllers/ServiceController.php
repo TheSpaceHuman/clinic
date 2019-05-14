@@ -17,11 +17,8 @@ class ServiceController extends Controller
   public function index()
   {
     $branches = Branch::pluck('title', 'id')->all();
-
     $categories = Category::all();
-
     $services = Service::all();
-
     $doctors = Doctor::orderBy('id', 'desc')->paginate(10);
 
     return view('pages.service.index', compact('categories', 'doctors', 'branches', 'services'));
@@ -37,7 +34,8 @@ class ServiceController extends Controller
 
     $branches = Branch::pluck('title', 'id')->all();
 
-    $services = Service::pluck('title', 'id')->all();
+//    $services = Service::pluck('title', 'id')->all();
+    $services = Service::all();
 
     $articles = Article::query()->whereHas('services', function (Builder $q)
       use ($s)
@@ -68,6 +66,7 @@ class ServiceController extends Controller
             $q->where('old_max', '>=', $age);
           }
         })
+        ->orderBy('name', 'asc')
         ->paginate(10);
 
     return view('pages.service.search', compact('categories', 'doctors', 's', 'age', 'branch', 'branches', 'services', 'articles'));
@@ -77,8 +76,11 @@ class ServiceController extends Controller
   {
     $categories = Category::all();
     $category = Category::where('slug', $slug)->firstOrFail();
+    $branches = Branch::pluck('title', 'id')->all();
+    $services = Service::all();
+    $doctors = Doctor::orderBy('id', 'desc')->paginate(10);
 
-    return view('pages.service.showCategory', compact('categories', 'category'));
+    return view('pages.service.showCategory', compact('categories', 'category', 'branches', 'services', 'doctors'));
   }
 
   public function showService($slug)
@@ -86,9 +88,10 @@ class ServiceController extends Controller
     $categories = Category::all();
     $services = Service::all();
     $service = Service::where('slug', $slug)->firstOrFail();
+    $branches = Branch::pluck('title', 'id')->all();
+    $doctors = Doctor::orderBy('id', 'desc')->paginate(10);
 
-
-    return view('pages.service.showService', compact('services', 'service', 'categories'));
+    return view('pages.service.showService', compact('services', 'service', 'categories', 'branches', 'doctors'));
   }
 
 }

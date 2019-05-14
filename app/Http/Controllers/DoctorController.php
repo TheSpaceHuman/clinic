@@ -12,7 +12,7 @@ class DoctorController extends Controller
   public function index()
   {
     $doctors = Doctor::orderBy('name', 'asc')->paginate(16);
-    $specs = Spec::all();
+    $specs = Spec::all()->sortBy('title');
 
     return view('pages.doctor.index', [
         'doctors' => $doctors,
@@ -54,16 +54,16 @@ class DoctorController extends Controller
 
   public function showSpec($slug)
   {
-    $specs = Spec::all();
+    $specs = Spec::all()->sortBy('title');
     $spec = Spec::where('slug', $slug)
         ->firstOrFail();
 
-    return view('pages.doctor.showSpec', compact(['specs', 'spec']));
+    return view('pages.doctor.showSpec', compact('specs', 'spec'));
   }
 
   public function showDoctor($slug)
   {
-    $specs = Spec::all();
+    $specs = Spec::all()->sortBy('title');
     $doctors = Doctor::all();
     $doctor = Doctor::where('slug', $slug)->firstOrFail();
 

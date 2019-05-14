@@ -33,7 +33,7 @@
                     {{ $doctor->getDescription() }}
                 </div>
                 @isset($doctor->link)
-                    <a href="{{$doctor->link}}" class="btn btn-link btn-outline-primary">
+                    <a href="{{$doctor->link}}" target="_blank" class="btn btn-link btn-outline-primary">
                         Посмотреть на сайте
                     </a>
                 @endisset

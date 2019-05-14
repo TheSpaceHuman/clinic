@@ -22,16 +22,30 @@
 
     <div class="content col-12 col-md-9">
         <form action="{{route('page.service.search')}}" method="get" class="row">
-            <div class="form-group col-5">
-                <input type="text" class="form-control" placeholder="Введите название услуги" name="s" value="{{ isset($s) ? $s : '' }}">
+            <div class="form-group col-4">
+                <select class="service-select2 w-100" name="s" value="{{ isset($s) ? $s : '' }}">
+                    <option></option>
+                    @foreach($services as $service)
+                        <option value="{{ $service->id }}">{{ $service->title }} {{ $service->words ? '[' . $service->words . ']' : '' }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="form-group col-5">
+            <div class="form-group col-3">
                 <input type="text" class="form-control" placeholder="Введите возраст" name="age" value="{{ isset($age) ? $age : '' }}">
+            </div>
+            <div class="form-group col-3">
+                <select name="branch" class="form-control">
+                    <option value="" selected disabled hidden>Выберите филиал</option>
+                    @foreach($branches as $branch_id => $branch_title)
+                        <option value="{{ $branch_id }}">{{ $branch_title }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group col-2">
                 <button class="btn btn-success">Искать</button>
             </div>
         </form>
+
         <table class="table-responsive table table-custom">
             <thead>
             <tr style="text-align: left;">

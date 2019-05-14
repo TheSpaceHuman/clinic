@@ -45,10 +45,21 @@ class SpecController extends Controller
           'title'	=>	'required'
       ]);
 
-      Spec::create([
-          'title' => request('title'),
-          'description' => request('description')
-      ]);
+      $updated = Spec::where('title', request('title'))->first();
+
+      if ($updated) {
+        $spec = Spec::all()->where('title', request('title'))->first();
+        $spec->update([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
+      } else {
+        Spec::create([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
+      }
+
 
       return redirect()->route('spec.index');
 

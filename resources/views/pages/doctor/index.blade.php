@@ -48,34 +48,6 @@
             @endforeach
         </div>
 
-
-       {{-- <table class="table-responsive table table-custom">
-            <thead>
-            <tr>
-                <th scope="col">Аватар</th>
-                <th scope="col">Фио врача</th>
-                <th scope="col">Филиалы</th>
-                <th scope="col">Специализация</th>
-                <th scope="col">Выездной?</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($doctors  as $doctor)
-                <tr style="text-align: left;">
-                    <td>
-                        <div class="doc_item_img">
-                            <a href="doctors/doctor/{{$doctor->slug}}"><img src="{{ $doctor->getImage() }}"></a>
-                        </div>
-                    </td>
-                    <td><a href="doctors/doctor/{{$doctor->slug}}">{{ $doctor->name }}</a></td>
-                    <td>{{ $doctor->getBranchTitle() }}</td>
-                    <td>{{ $doctor->getSpecTitle() }}</td>
-                    <td>{{ $doctor->getExit() }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>--}}
-
         <div class="d-flex justify-content-center">
             {!! $doctors->links() !!}
         </div>

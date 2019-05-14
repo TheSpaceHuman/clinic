@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль</label>
-                            <input type="text" class="form-control form-control-line"  id="password" name="password" value="{{old('password')}}">
+                            <input type="password" class="form-control form-control-line"  id="password" name="password" value="{{old('password')}}">
                         </div>
                         <div class="form-group">
                             <input type="checkbox" id="is_admin" class="filled-in chk-col-red" name="is_admin">
