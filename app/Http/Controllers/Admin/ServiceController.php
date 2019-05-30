@@ -54,27 +54,30 @@ class ServiceController extends Controller
       $this->validate($request, [
           'title'	=>	'required|max:255' ,
           'code' => 'required|max:11',
-//          'time' => 'required|max:11',
           'price' => 'required|max:11',
-//          'min_old' => 'required|max:3',
-//          'max_old' => 'required|max:3'
       ]);
 
+      $updated = Service::where('title', request('title'))->first();
+
+      if ($updated) {
+        $service = Service::all()->where('title', request('title'))->first();
+        $service->update($request->all());
+      } else {
         $service = Service::add($request->all());
+      }
 
-        $service->setPriority($request->input('category_id'));
+      $service->setPriority($request->input('category_id'));
 
-        $service->setOldRange(request('min_old'), request('max_old'));
+      $service->setOldRange(request('min_old'), request('max_old'));
 
-        if ($request->has('status')) {
-          $service->status = 1;
-        } else {
-          $service->status = 0;
-        }
-        $service->save();
+      if ($request->has('status')) {
+        $service->status = 1;
+      } else {
+        $service->status = 0;
+      }
+      $service->save();
 
-
-        return redirect()->route('service.index');
+      return redirect()->route('service.index');
 
     }
 
@@ -126,10 +129,6 @@ class ServiceController extends Controller
       $selectedDoctor = $service->doctor->pluck('id')->all();
       $categories = Category::pluck('title', 'id')->all();
 
-
-
-
-
       return view('admin.services.edit', [
           'service'=> $service,
           'doctors' => $dostors,
@@ -150,15 +149,11 @@ class ServiceController extends Controller
       $this->validate($request, [
           'title'	=>	'required|max:255',
           'code' => 'required|max:11',
-//          'time' => 'required|max:11',
           'price' => 'required|max:11',
-//          'min_old' => 'required|max:3',
-//          'max_old' => 'required|max:3'
       ]);
 
       $service = Service::findOrFail($id);
 
-//      dd($request->all());
       $service->update($request->all());
 
       $service->setOldRange(request('min_old'), request('max_old'));

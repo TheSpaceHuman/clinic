@@ -6,9 +6,13 @@
       $(document).ready(function () {
         function cointerInput() {
           var lengthWrapper = $('.copy-block').length;
-          return lengthWrapper
+          if(lengthWrapper > 0) {
+            return lengthWrapper;
+          }
+          return 0;
         }
         var addCounter = cointerInput();
+
 
         $('.btn-add').click(function () {
 
@@ -16,35 +20,46 @@
           var CLASS_TIME = "service["+ addCounter +"]" + "[time]";
           var CLASS_OLD_MIN = "service["+ addCounter +"]" + "[old_min]";
           var CLASS_OLD_MAX = "service["+ addCounter +"]" + "[old_max]";
+          var CLASS_SORT = "service["+ addCounter +"]" + "[sort]";
+          var ID_SORT = "sort-"+ addCounter;
           var clone =  $('.copy-block').first().clone();
 
 
           clone.find('.f1').attr({
             name: CLASS_OLD_MIN,
             placeholder: 'От'
-          }).val('');
+          }).val('0');
 
           clone.find('.f2').attr({
             name: CLASS_OLD_MAX,
             placeholder: 'До'
-          }).val('');
+          }).val('99');
 
           clone.find('.f3').attr({
             name: CLASS_TIME,
             placeholder: 'Время'
-          }).val('');
+          }).val('0');
 
           clone.find('.f4').attr({
             name: CLASS_TITLE,
             placeholder: 'Название услуги'
           });
 
+          clone.find('.f5').attr({
+            name: CLASS_SORT,
+            id: ID_SORT
+          });
+
+          clone.find('.f5-label').attr({
+            for: ID_SORT
+          });
+
           clone.appendTo('.append');
           addCounter++;
-         $('.append').last('.copy-block').find('.btn-close').click(function (e) {
-           e.preventDefault();
-           $(this).parents('.copy-block').remove();
-         });
+          $('.append').last('.copy-block').find('.btn-close').click(function (e) {
+            e.preventDefault();
+            $(this).parents('.copy-block').remove();
+          });
           $('.append').last('.copy-block').find('.select2').select2();
         });
         $('.btn-close').click(function (e) {
@@ -97,13 +112,16 @@
 
                         <div class="form-group append row">
                             <label class="card-title col-md-12">Добавление услуг</label>
-
-                            <h5 class="card-title col-md-6 my-3">Название услуги</h5>
-                            <h5 class="card-title col-md-3 my-3">Время выполнения</h5>
-                            <h5 class="card-title col-md-3 my-3">Возрастной диапазон</h5>
-                            @foreach($doctor->service as $itemKey => $itemValue)
+                            <div class="form-group_header-items">
+                                <h5 class="card-title header-service-name my-3">Название услуги</h5>
+                                <h5 class="card-title header-lead-time my-3">Время выполнения (мин.)</h5>
+                                <h5 class="card-title header-old-in my-3">Возраст ОТ</h5>
+                                <h5 class="card-title header-old-to my-3">Возраст ДО</h5>
+                                <h5 class="card-title header-priority-dictor my-3">Приоритет</h5>
+                            </div>
+                            @forelse ($doctor->service as $itemKey => $itemValue)
                                 <div class="row copy-block">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-5">
                                         {{Form::select('service['. $itemKey .'][service_id]',
                                            $services,
                                            $itemValue->id,
@@ -123,8 +141,8 @@
                                           $itemValue->pivot->old_min,
                                           ['class' => 'form-control f1', 'data-placeholder'=>'От'])
                                        }}
-
                                     </div>
+
                                     <div class="form-group col-md-1">
                                         {{Form::text('service['. $itemKey .'][old_max]',
                                           $itemValue->pivot->old_max,
@@ -132,11 +150,43 @@
                                        }}
                                     </div>
 
+                                    <div class="form-group col-md-1">
+                                        <input type="checkbox" id="sort-{{$itemKey}}" class="chk-col-red f5" name="service[{{$itemKey}}][sort]" value="1" {{  $itemValue->pivot->sort == "1" ? 'checked' : ''}}>
+                                        <label for="sort-{{$itemKey}}" class="f5-label">Top</label>
+                                    </div>
+
                                     <div class="form-group col-md-2">
                                         <button type="button" class="btn btn-warning btn-circle btn-close" style="display: block;margin: 0 auto;"><i class="fa fa-times"></i> </button>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="row copy-block col-12">
+                                    <div class="form-group col-md-5">
+                                        {{Form::select('service[0][service_id]',
+                                           $services,
+                                           null,
+                                           ['class' => 'form-control f4', 'data-placeholder'=>'Выберите услугу'])
+                                        }}
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="number" class="form-control f3" name="service[0][time]" placeholder="Время выполнения">
+                                    </div>
+
+                                    <div class="form-group col-md-1">
+                                        <input type="number" class="form-control f1" name="service[0][old_min]" placeholder="От">
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <input type="number" class="form-control f2" name="service[0][old_max]" placeholder="До">
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <input type="checkbox" id="sort" class="chk-col-red f5" name="service[0][sort]" value="1">
+                                        <label for="sort" class="f5-label">Top</label>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <button type="button" class="btn btn-warning btn-circle btn-close" style="display: block;margin: 0 auto;"><i class="fa fa-times"></i> </button>
+                                    </div>
+                                </div>
+                            @endforelse
 
                         </div>
                         <div class="flex-wrapper" style="display: flex; justify-content: center; align-items: center;">

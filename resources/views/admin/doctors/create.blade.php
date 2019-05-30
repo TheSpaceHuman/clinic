@@ -121,11 +121,21 @@
 
                             <div class="row copy-block col-12">
                                 <div class="form-group col-md-5">
-                                    {{Form::select('service[0][service_id]',
+                                    {{--{{Form::select('service[0][service_id]',
                                        $services,
                                        null,
                                        ['class' => 'form-control f4', 'data-placeholder'=>'Выберите услугу'])
-                                    }}
+                                    }}--}}
+                                    <select name="service[0][service_id]" id="service" class="form-control f4">
+                                        <option value="" disabled selected>---Выберите услугу---</option>
+                                        @foreach($categoriesObject as $category)
+                                            <optgroup label="{{ $category->title }}">
+                                                @foreach($category->service as $service)
+                                                    <option value="{{ $service->id }}">{{ $service->title }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <input type="number" class="form-control f3" name="service[0][time]" placeholder="Время выполнения">

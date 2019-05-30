@@ -9,6 +9,7 @@ use App\Service;
 use App\Spec;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 
 class DoctorController extends Controller
 {
@@ -38,12 +39,14 @@ class DoctorController extends Controller
       $services = Service::orderBy('title', 'asc')->pluck('title', 'id')->all();
       $branches = Branch::pluck('title', 'id')->all();
       $specs = Spec::pluck('title', 'id')->all();
+      $categoriesObject = Category::all()->sortBy('title');
 
       return view('admin.doctors.create', [
           'categories' => $categories,
           'services' => $services,
           'branches' => $branches,
-          'specs' => $specs
+          'specs' => $specs,
+          'categoriesObject' => $categoriesObject
       ]);
     }
 
@@ -57,7 +60,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
+
         $this->validate($request, [
             'name'	=>	'required|max:255' ,
             'category' => 'required',
@@ -117,6 +120,7 @@ class DoctorController extends Controller
 
       $doctor = Doctor::findOrFail($id);
       $categories = Category::pluck('title', 'id')->all();
+      $categoriesObject = Category::all()->sortBy('title');
       $services = Service::orderBy('title', 'asc')->pluck('title', 'id')->all();
       $branches = Branch::pluck('title', 'id')->all();
       $specs = Spec::pluck('title', 'id')->all();
@@ -124,6 +128,17 @@ class DoctorController extends Controller
       $selectedService = $doctor->service->pluck('id')->all();
       $selectedBranch = $doctor->branch->pluck('id')->all();
       $selectedSpec = $doctor->spec->pluck('id')->all();
+      // Logic Sync services
+      // Получить исходный массив с со всеми услугами данного доктора
+      $servicesCurrentDoctors = $doctor->service->pluck('title', 'id')->all();
+      // Нахождения различий
+      $deletedServices = array_diff($servicesCurrentDoctors, $services);
+      // Фильтруем от старых услуг
+      $filteredServices = Arr::except($servicesCurrentDoctors, $deletedServices);
+//      [$deletedServicesKeys, $deletedServicesValues] = Arr::divide($deletedServices);
+      // Получить обновленные услуги для данного доктора
+      $currentServices = $doctor->service;
+//      dd($deletedServices);
 
       return view('admin.doctors.edit', [
           'categories' => $categories,
@@ -135,6 +150,7 @@ class DoctorController extends Controller
           'selectedService' => $selectedService,
           'selectedBranch' => $selectedBranch,
           'selectedSpec' => $selectedSpec,
+          'categoriesObject' => $categoriesObject,
       ]);
     }
 

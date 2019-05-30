@@ -15,7 +15,7 @@
                             <input type="text" class="form-control form-control-line" value="{{old('title')}}" id="title" name="title">
                         </div>
                         <div class="form-group">
-                            <label for="author">Привьязать к услуге</label>
+                            <label for="author">Назначить на услугу</label>
                             {{Form::select('author[]',
                                  $services,
                                  null,

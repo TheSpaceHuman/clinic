@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label for="article_id">Назначить статью</label>
                             <select id="article_id" name="article_id" class="form-control select2" data-placeholder="Выберите статью">
-                                <option value=""></option>
+                                <option value="">---Не назначать---</option>
                                 @foreach($articles as $article)
                                     <option value="{{ $article->id }}" {{ $analyze->article_id ==  $article->id ?  'selected' : '' }}>{{ $article->title }}</option>
                                 @endforeach
